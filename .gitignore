@@ -31,3 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
+
+.snowpack
+build
+node
+node_modules
