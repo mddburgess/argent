@@ -12,6 +12,14 @@ const api = createApi({
                 {type: "ledger", id: "list"},
                 ...(result?.map(({id}) => ({type: "ledger" as const, id})) ?? [])
             ]
+        }),
+        createLedgerEntry: builder.mutation<LedgerEntry, Partial<LedgerEntry>>({
+            query: (ledgerEntry) => ({
+                url: "ledger",
+                method: "POST",
+                body: ledgerEntry
+            }),
+            invalidatesTags: [{type: "ledger", id: "list"}]
         })
     })
 })

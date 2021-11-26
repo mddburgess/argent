@@ -9,9 +9,9 @@ interface Props {
 const LedgerEntryListItem = ({item}: Props) => (
     <ListGroupItem>
         <Row>
-            <Col xs="auto">{item.entryDate}</Col>
+            <Col xs={2}>{item.entryDate}</Col>
             <Col>{item.payee}</Col>
-            <Col xs="auto" className="text-end">{item.amount}</Col>
+            <Col xs={2} className="text-end">{item.amount}</Col>
         </Row>
     </ListGroupItem>
 );
