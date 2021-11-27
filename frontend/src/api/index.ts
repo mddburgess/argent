@@ -20,6 +20,21 @@ const api = createApi({
                 body: ledgerEntry
             }),
             invalidatesTags: [{type: "ledger", id: "list"}]
+        }),
+        updateLedgerEntry: builder.mutation<LedgerEntry, Partial<LedgerEntry>>({
+            query: (ledgerEntry) => ({
+                url: `ledger/${ledgerEntry.id}`,
+                method: "PUT",
+                body: ledgerEntry
+            }),
+            invalidatesTags: (result, error, {id}) => [{type: "ledger", id}]
+        }),
+        deleteLedgerEntry: builder.mutation<void, Partial<LedgerEntry>>({
+            query: (ledgerEntry) => ({
+                url: `ledger/${ledgerEntry.id}`,
+                method: "DELETE"
+            }),
+            invalidatesTags: (result, error, {id}) => [{type: "ledger", id}]
         })
     })
 })
