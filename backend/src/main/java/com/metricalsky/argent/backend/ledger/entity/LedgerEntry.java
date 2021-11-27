@@ -1,7 +1,7 @@
 package com.metricalsky.argent.backend.ledger.entity;
 
 import java.math.BigDecimal;
-import java.time.ZonedDateTime;
+import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -19,7 +19,7 @@ import com.metricalsky.argent.backend.ledger.data.LedgerEntryData;
 @NoArgsConstructor
 public class LedgerEntry extends IdentifiableEntity {
 
-    private ZonedDateTime entryDate;
+    private LocalDate entryDate;
     private String payee;
     private BigDecimal amount;
 

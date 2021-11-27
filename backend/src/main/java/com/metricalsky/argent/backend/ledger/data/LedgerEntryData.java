@@ -1,13 +1,14 @@
 package com.metricalsky.argent.backend.ledger.data;
 
 import java.math.BigDecimal;
-import java.time.ZonedDateTime;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
 
 import com.metricalsky.argent.backend.ledger.entity.LedgerEntry;
 
 public record LedgerEntryData(
         Integer id,
-        ZonedDateTime entryDate,
+        LocalDate entryDate,
         String payee,
         BigDecimal amount
 ) {
