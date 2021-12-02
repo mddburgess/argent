@@ -51,8 +51,19 @@
     <properties>
         <java.version>16</java.version>
 
+        <problem-spring-web-starter.version>0.27.0</problem-spring-web-starter.version>
         <tidy-maven-plugin.version>1.1.0</tidy-maven-plugin.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.zalando</groupId>
+                <artifactId>problem-spring-web-starter</artifactId>
+                <version>${problem-spring-web-starter.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>
