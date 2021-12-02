@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.time.DurationFormatUtils;
+import org.apache.commons.lang3.time.StopWatch;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
@@ -22,18 +24,26 @@ public class RequestLogFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
             FilterChain filterChain) throws ServletException, IOException {
         var shouldLog = request.getRequestURI().startsWith("/api");
+        var stopwatch = new StopWatch();
 
         try {
             if (shouldLog) {
                 log.info("{} {}", request.getMethod(), request.getRequestURI());
+                stopwatch.start();
             }
             filterChain.doFilter(request, response);
         } finally {
             if (shouldLog) {
+                stopwatch.stop();
                 var status = HttpStatus.resolve(response.getStatus());
-                log.info("{} {} => {} {}", request.getMethod(), request.getRequestURI(),
-                        status.value(), status.getReasonPhrase());
+                log.info("{} {} => {} {} ({})", request.getMethod(), request.getRequestURI(),
+                        status.value(), status.getReasonPhrase(), formatTime(stopwatch));
             }
         }
+    }
+
+    private static String formatTime(StopWatch stopwatch) {
+        String format = stopwatch.getTime() < 1000 ? "S'ms'" : "s.SSS's'";
+        return DurationFormatUtils.formatDuration(stopwatch.getTime(), format);
     }
 }
