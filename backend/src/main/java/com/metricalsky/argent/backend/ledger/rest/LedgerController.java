@@ -1,5 +1,7 @@
 package com.metricalsky.argent.backend.ledger.rest;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -37,7 +39,7 @@ public class LedgerController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @Transactional
-    public LedgerEntryData createLedgerEntry(@RequestBody LedgerEntryData ledgerEntryData) {
+    public LedgerEntryData createLedgerEntry(@Valid @RequestBody LedgerEntryData ledgerEntryData) {
         var ledgerEntry = new LedgerEntry(ledgerEntryData);
         ledgerEntryRepository.save(ledgerEntry);
         return new LedgerEntryData(ledgerEntry);
