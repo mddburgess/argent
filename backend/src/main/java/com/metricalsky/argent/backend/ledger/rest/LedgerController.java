@@ -30,7 +30,7 @@ public class LedgerController {
 
     @GetMapping
     public Iterable<LedgerEntryData> retrieveLedger() {
-        return ledgerEntryRepository.findAll()
+        return ledgerEntryRepository.findByOrderByEntryDateDescIdAsc()
                 .stream()
                 .map(LedgerEntryData::new)
                 .toList();
