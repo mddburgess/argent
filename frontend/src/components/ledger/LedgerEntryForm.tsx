@@ -11,6 +11,7 @@ import {editingActions} from "store/editing";
 import IconButton from "components/form/IconButton";
 import * as yup from "yup";
 import ValidatedFormControl from "components/form/ValidatedFormControl";
+import {useHotkeys} from "react-hotkeys-hook";
 
 interface Props {
     initialState: Partial<LedgerEntry>;
@@ -34,12 +35,12 @@ const LedgerEntryForm = ({initialState, onSave, onDelete}: Props) => {
     const [ledgerEntry] = useState<Partial<LedgerEntry>>(initialState);
     const dispatch = useAppDispatch();
 
-    const onSubmit = (values: Partial<LedgerEntry>) => {
+    const doSubmit = (values: Partial<LedgerEntry>) => {
         onSave(values);
         dispatch(editingActions.reset());
     }
 
-    const onCancel = () => {
+    const doCancel = () => {
         dispatch(editingActions.reset());
     }
 
@@ -48,8 +49,10 @@ const LedgerEntryForm = ({initialState, onSave, onDelete}: Props) => {
         dispatch(editingActions.reset());
     }
 
+    useHotkeys("esc", doCancel, {enableOnTags: ["INPUT"]});
+
     return (
-        <Formik validationSchema={schema} initialValues={ledgerEntry} onSubmit={onSubmit}>
+        <Formik validationSchema={schema} initialValues={ledgerEntry} onSubmit={doSubmit}>
             <Form>
                 <Row>
                     <Col xs={2}>
@@ -88,7 +91,7 @@ const LedgerEntryForm = ({initialState, onSave, onDelete}: Props) => {
                     <Col xs="auto">
                         <ButtonGroup>
                             <IconButton icon={CheckCircleFill} type="submit"/>
-                            <IconButton icon={XCircle} variant="secondary" onClick={onCancel}/>
+                            <IconButton icon={XCircle} variant="secondary" onClick={doCancel}/>
                             {onDelete &&
                                 <IconButton icon={TrashFill} variant="danger" onClick={doDelete}/>
                             }
