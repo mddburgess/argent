@@ -1,12 +1,12 @@
 import FormControl, {FormControlProps} from "react-bootstrap/FormControl";
 import {FieldProps} from "formik";
-import {useEffect, useRef} from "react";
+import {ChangeEvent, useEffect, useRef} from "react";
 
-type Props = Omit<FieldProps, "form"> & FormControlProps & {
+type Props = FieldProps & FormControlProps & {
     autoFocus?: boolean
 };
 
-const ValidatedFormControl = ({field, meta, autoFocus, ...props}: Props) => {
+const ValidatedFormControl = ({field, form, meta, autoFocus, ...props}: Props) => {
     const ref = useRef<HTMLInputElement>();
 
     useEffect(() => {
@@ -16,12 +16,17 @@ const ValidatedFormControl = ({field, meta, autoFocus, ...props}: Props) => {
         }
     }, [autoFocus]);
 
+    const doChange = (event: ChangeEvent<HTMLInputElement>) => {
+        form.setFieldTouched(field.name, false);
+        field.onChange(event);
+    }
+
     return (
         <>
             <FormControl
                 name={field.name}
                 value={field.value}
-                onChange={field.onChange}
+                onChange={doChange}
                 onBlur={field.onBlur}
                 isInvalid={meta.touched && !!meta.error}
                 ref={ref}

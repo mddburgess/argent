@@ -57,31 +57,26 @@ const LedgerEntryForm = ({initialState, onSave, onDelete}: Props) => {
                 <Row>
                     <Col xs={2}>
                         <Field name="entryDate" type="text">
-                            {({field, meta}: FieldProps) => (
-                                <ValidatedFormControl
-                                    field={field} meta={meta}
-                                    size="sm" placeholder="Date" autoFocus
-                                />
+                            {({...props}: FieldProps) => (
+                                <ValidatedFormControl {...props}
+                                    size="sm" placeholder="Date" autoFocus/>
                             )}
                         </Field>
                     </Col>
                     <Col>
                         <Field name="payee" type="text">
-                            {({field, meta}: FieldProps) => (
-                                <ValidatedFormControl
-                                    field={field} meta={meta}
-                                    size="sm" placeholder="Payee"
-                                />
+                            {({...props}: FieldProps) => (
+                                <ValidatedFormControl {...props}
+                                    size="sm" placeholder="Payee"/>
                             )}
                         </Field>
                     </Col>
                     <Col xs={2}>
                         <Field name="amount" type="text">
-                            {({field, meta}: FieldProps) => (
+                            {({...props}: FieldProps) => (
                                 <InputGroup size="sm" hasValidation={true}>
                                     <InputGroup.Text>$</InputGroup.Text>
-                                    <ValidatedFormControl
-                                        field={field} meta={meta}
+                                    <ValidatedFormControl {...props}
                                         size="sm" placeholder="Amount"/>
                                 </InputGroup>
                             )}
