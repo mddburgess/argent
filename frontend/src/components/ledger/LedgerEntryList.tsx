@@ -1,14 +1,14 @@
 import api from "api";
 import ListGroup from "react-bootstrap/ListGroup";
-import LedgerEntryListItem from "components/ledger/LedgerEntryListItem";
-import AddLedgerEntryListItem from "components/ledger/AddLedgerEntryListItem";
+import LedgerEntryRow from "components/ledger/LedgerEntryRow";
+import AddLedgerEntryRow from "components/ledger/AddLedgerEntryRow";
 
 const LedgerEntryList = () => {
     const {data} = api.useListLedgerQuery();
     return (
         <ListGroup variant="flush">
-            <AddLedgerEntryListItem />
-            {data?.map(item => <LedgerEntryListItem key={item.id} item={item} />)}
+            <AddLedgerEntryRow />
+            {data?.map(item => <LedgerEntryRow key={item.id} item={item} />)}
         </ListGroup>
     )
 }

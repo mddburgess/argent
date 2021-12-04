@@ -4,7 +4,7 @@ import {useAppDispatch, useAppSelector} from "store/hooks";
 import {editingActions} from "store/editing";
 import api from "api";
 
-const AddLedgerEntryListItem = () => {
+const AddLedgerEntryRow = () => {
     const [createLedgerEntry] = api.useCreateLedgerEntryMutation();
     const editing = useAppSelector(state => state.editing);
     const dispatch = useAppDispatch();
@@ -27,4 +27,4 @@ const AddLedgerEntryListItem = () => {
     }
 }
 
-export default AddLedgerEntryListItem;
+export default AddLedgerEntryRow;

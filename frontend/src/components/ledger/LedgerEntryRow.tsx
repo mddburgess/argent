@@ -10,7 +10,7 @@ interface Props {
     item: LedgerEntry
 }
 
-const LedgerEntryListItem = ({item}: Props) => {
+const LedgerEntryRow = ({item}: Props) => {
     const [updateLedgerEntry] = api.useUpdateLedgerEntryMutation();
     const [deleteLedgerEntry] = api.useDeleteLedgerEntryMutation();
     const editing = useAppSelector(state => state.editing);
@@ -40,4 +40,4 @@ const LedgerEntryListItem = ({item}: Props) => {
     }
 };
 
-export default LedgerEntryListItem;
+export default LedgerEntryRow;
