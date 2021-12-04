@@ -11,10 +11,15 @@ describe("LedgerEntryRow", () => {
             payee: "Payee",
             amount: 100
         }
+        const format = new Intl.NumberFormat("en-CA", {style: "currency", currency: "CAD"});
 
-        const result = render(<Provider store={store}><LedgerEntryRow item={item}/></Provider>);
+        const result = render(
+            <Provider store={store}>
+                <LedgerEntryRow item={item} format={format}/>
+            </Provider>
+        );
         expect(result.getByText("2021-01-01")).toBeInTheDocument();
         expect(result.getByText("Payee")).toBeInTheDocument();
-        expect(result.getByText("100")).toBeInTheDocument();
+        expect(result.getByText("$100.00")).toBeInTheDocument();
     });
 })

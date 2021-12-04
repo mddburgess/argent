@@ -8,9 +8,10 @@ import api from "api";
 
 interface Props {
     item: LedgerEntry
+    format: Intl.NumberFormat
 }
 
-const LedgerEntryRow = ({item}: Props) => {
+const LedgerEntryRow = ({item, format}: Props) => {
     const [updateLedgerEntry] = api.useUpdateLedgerEntryMutation();
     const [deleteLedgerEntry] = api.useDeleteLedgerEntryMutation();
     const editing = useAppSelector(state => state.editing);
@@ -33,7 +34,12 @@ const LedgerEntryRow = ({item}: Props) => {
                 <Row>
                     <Col xs={2}>{item.entryDate}</Col>
                     <Col>{item.payee}</Col>
-                    <Col xs={2} className="text-end">{item.amount}</Col>
+                    <Col xs={2} className="text-end">
+                        {item.amount < 0 && format.format(-item.amount)}
+                    </Col>
+                    <Col xs={2} className="text-end">
+                        {item.amount > 0 && format.format(item.amount)}
+                    </Col>
                 </Row>
             </ListGroupItem>
         );
