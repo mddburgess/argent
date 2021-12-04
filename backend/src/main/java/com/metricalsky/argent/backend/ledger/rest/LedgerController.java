@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.metricalsky.argent.backend.exceptions.NotFoundException;
 import com.metricalsky.argent.backend.ledger.data.LedgerEntryData;
 import com.metricalsky.argent.backend.ledger.entity.LedgerEntry;
 import com.metricalsky.argent.backend.ledger.repository.LedgerEntryRepository;
@@ -49,9 +50,10 @@ public class LedgerController {
     @Transactional
     public LedgerEntryData updateLedgerEntry(
             @PathVariable Integer id,
-            @RequestBody LedgerEntryData ledgerEntryData
+            @Valid @RequestBody LedgerEntryData ledgerEntryData
     ) {
-        var ledgerEntry = ledgerEntryRepository.findById(id).orElseThrow();
+        var ledgerEntry = ledgerEntryRepository.findById(id)
+                .orElseThrow(NotFoundException::new);
         ledgerEntry.patch(ledgerEntryData);
         return new LedgerEntryData(ledgerEntry);
     }
