@@ -4,6 +4,7 @@ import {useAppDispatch, useAppSelector} from "store/hooks";
 import {editingActions} from "store/editing";
 import api from "api";
 import {useHotkeys} from "react-hotkeys-hook";
+import {DateTime} from "luxon";
 
 const AddLedgerEntryRow = () => {
     const [createLedgerEntry] = api.useCreateLedgerEntryMutation();
@@ -18,7 +19,7 @@ const AddLedgerEntryRow = () => {
 
     if (editing.ledgerEntry === 0) {
         const initialState = {
-            entryDate: "",
+            entryDate: DateTime.now().toISODate(),
             payee: "",
             amount: 0
         }
