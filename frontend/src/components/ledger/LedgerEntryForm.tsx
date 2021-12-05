@@ -12,6 +12,7 @@ import IconButton from "components/form/IconButton";
 import * as yup from "yup";
 import ValidatedFormControl from "components/form/ValidatedFormControl";
 import {useHotkeys} from "react-hotkeys-hook";
+import {DateTime} from "luxon";
 
 interface Props {
     initialState: Omit<LedgerEntry, "id">;
@@ -20,18 +21,18 @@ interface Props {
 }
 
 const schema = yup.object().shape({
-        entryDate: yup.date()
-            .required("Required")
-            .typeError("Invalid date"),
-        payee: yup.string()
-            .trim()
-            .required("Required"),
-        amount: yup.number()
-            .transform((value) => value || undefined)
-            .required("Required")
-            .typeError("Invalid amount")
-    })
-;
+    entryDate: yup.string()
+        .required("Required")
+        .test("isDate", "Invalid date",
+            (value) => !!value && DateTime.fromFormat(value, "yyyy-MM-dd").isValid),
+    payee: yup.string()
+        .trim()
+        .required("Required"),
+    amount: yup.number()
+        .transform((value) => value || undefined)
+        .required("Required")
+        .typeError("Invalid amount")
+});
 
 const LedgerEntryForm = ({initialState, onSave, onDelete}: Props) => {
     const [ledgerEntry] = useState<Partial<LedgerEntry>>(initialState);
