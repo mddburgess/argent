@@ -17,9 +17,14 @@ const AddLedgerEntryRow = () => {
     useHotkeys("n", doClick, {enabled: editing.ledgerEntry === undefined});
 
     if (editing.ledgerEntry === 0) {
+        const initialState = {
+            entryDate: "",
+            payee: "",
+            amount: 0
+        }
         return (
             <ListGroupItem variant="primary">
-                <LedgerEntryForm initialState={{}} onSave={createLedgerEntry}/>
+                <LedgerEntryForm initialState={initialState} onSave={createLedgerEntry}/>
             </ListGroupItem>
         )
     } else {

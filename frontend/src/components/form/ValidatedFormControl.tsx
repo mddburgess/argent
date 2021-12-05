@@ -25,7 +25,7 @@ const ValidatedFormControl = ({field, form, meta, autoFocus, ...props}: Props) =
         <>
             <FormControl
                 name={field.name}
-                value={field.value}
+                value={field.value || ""}
                 onChange={doChange}
                 onBlur={field.onBlur}
                 isInvalid={meta.touched && !!meta.error}

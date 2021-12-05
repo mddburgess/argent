@@ -14,22 +14,24 @@ import ValidatedFormControl from "components/form/ValidatedFormControl";
 import {useHotkeys} from "react-hotkeys-hook";
 
 interface Props {
-    initialState: Partial<LedgerEntry>;
+    initialState: Omit<LedgerEntry, "id">;
     onSave: (ledgerEntry: Partial<LedgerEntry>) => void;
     onDelete?: (ledgerEntry: Partial<LedgerEntry>) => void;
 }
 
 const schema = yup.object().shape({
-    entryDate: yup.date()
-        .required("Required")
-        .typeError("Invalid date"),
-    payee: yup.string()
-        .trim()
-        .required("Required"),
-    amount: yup.number()
-        .required("Required")
-        .typeError("Invalid amount")
-});
+        entryDate: yup.date()
+            .required("Required")
+            .typeError("Invalid date"),
+        payee: yup.string()
+            .trim()
+            .required("Required"),
+        amount: yup.number()
+            .transform((value) => value || undefined)
+            .required("Required")
+            .typeError("Invalid amount")
+    })
+;
 
 const LedgerEntryForm = ({initialState, onSave, onDelete}: Props) => {
     const [ledgerEntry] = useState<Partial<LedgerEntry>>(initialState);
@@ -59,7 +61,7 @@ const LedgerEntryForm = ({initialState, onSave, onDelete}: Props) => {
                         <Field name="entryDate" type="text">
                             {({...props}: FieldProps) => (
                                 <ValidatedFormControl {...props}
-                                    size="sm" placeholder="Date" autoFocus/>
+                                                      size="sm" placeholder="Date" autoFocus/>
                             )}
                         </Field>
                     </Col>
@@ -67,7 +69,7 @@ const LedgerEntryForm = ({initialState, onSave, onDelete}: Props) => {
                         <Field name="payee" type="text">
                             {({...props}: FieldProps) => (
                                 <ValidatedFormControl {...props}
-                                    size="sm" placeholder="Payee"/>
+                                                      size="sm" placeholder="Payee"/>
                             )}
                         </Field>
                     </Col>
@@ -77,7 +79,7 @@ const LedgerEntryForm = ({initialState, onSave, onDelete}: Props) => {
                                 <InputGroup size="sm" hasValidation={true}>
                                     <InputGroup.Text>$</InputGroup.Text>
                                     <ValidatedFormControl {...props}
-                                        size="sm" placeholder="Amount"/>
+                                                          size="sm" placeholder="Amount"/>
                                 </InputGroup>
                             )}
                         </Field>
