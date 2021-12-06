@@ -51,6 +51,7 @@
     <properties>
         <java.version>16</java.version>
 
+        <git-commit-id-maven-plugin.version>5.0.0</git-commit-id-maven-plugin.version>
         <problem-spring-web-starter.version>0.27.0</problem-spring-web-starter.version>
         <tidy-maven-plugin.version>1.1.0</tidy-maven-plugin.version>
     </properties>
@@ -66,6 +67,15 @@
     </dependencyManagement>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>io.github.git-commit-id</groupId>
+                    <artifactId>git-commit-id-maven-plugin</artifactId>
+                    <version>${git-commit-id-maven-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
