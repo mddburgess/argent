@@ -1,10 +1,11 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react";
-import type {LedgerEntry} from "types/LedgerEntry";
+import {LedgerEntry} from "types/LedgerEntry";
+import {ApplicationInfo} from "types/ApplicationInfo";
 
 const api = createApi({
     reducerPath: "api",
     baseQuery: fetchBaseQuery({baseUrl: "/api"}),
-    tagTypes: ["ledger"],
+    tagTypes: ["application", "ledger"],
     endpoints: (builder) => ({
         listLedger: builder.query<LedgerEntry[], void>({
             query: () => "ledger",
@@ -35,6 +36,10 @@ const api = createApi({
                 method: "DELETE"
             }),
             invalidatesTags: (result, error, {id}) => [{type: "ledger", id}]
+        }),
+        getApplicationInfo: builder.query<ApplicationInfo, void>({
+            query: () => "application/info",
+            providesTags: [{type: "application", id: "info"}]
         })
     })
 })
