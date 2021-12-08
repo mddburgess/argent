@@ -16,6 +16,7 @@ const Footer = () => {
                     version
                     <Badge bg="secondary" className="align-text-top ms-1">
                         <a href={`${github}/releases/tag/v${data.build.version}`}
+                           target="_blank" rel="noopener noreferrer"
                            className="link-light">
                             {data.build.version}
                         </a>
@@ -25,6 +26,7 @@ const Footer = () => {
                     branch
                     <Badge bg="secondary" className="align-text-top ms-1">
                         <a href={`${github}/tree/${data.git.branch}`}
+                           target="_blank" rel="noopener noreferrer"
                            className="link-light">
                             {data.git.branch}
                         </a>
@@ -34,6 +36,7 @@ const Footer = () => {
                     commit
                     <Badge bg="secondary" className="align-text-top ms-1">
                         <a href={`${github}/commit/${data.git.commit.id}`}
+                           target="_blank" rel="noopener noreferrer"
                            className="link-light">
                             {data.git.commit.id}
                         </a>
