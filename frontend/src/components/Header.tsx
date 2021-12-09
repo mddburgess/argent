@@ -5,7 +5,7 @@ import api from "api";
 
 const Header = () => {
     const {data, isLoading} = api.useListLedgerQuery();
-    const sum = data?.map(item => item.amount).reduce((a, b) => a + b) ?? 0;
+    const sum = data?.map(item => item.amount).reduce((a, b) => a + b, 0) ?? 0;
     const format = Intl.NumberFormat("en-CA", {
         style: "currency",
         currency: "CAD",
