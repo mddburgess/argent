@@ -11,10 +11,18 @@ jobs:
     steps:
       - name: Checkout project
         uses: actions/checkout@v2
+      - id: pr-name
+        name: Get pull request name
+        uses: frabert/replace-string-action@v2.0
+        with:
+          pattern: 'release/(.*)'
+          string: ${{ github.ref_name }}
+          replace-with: 'Release v$1'
       - name: Open pull request
         uses: repo-sync/pull-request@v2
         with:
           destination_branch: production
+          pr_title: ${{ steps.pr-name.outputs.replaced }}
           pr_assignee: mddburgess
           github_token: ${{ secrets.GITHUB_TOKEN }}
   build:
