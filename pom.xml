@@ -52,6 +52,7 @@
         <java.version>16</java.version>
 
         <git-commit-id-maven-plugin.version>5.0.0</git-commit-id-maven-plugin.version>
+        <gitflow-maven-plugin.version>1.17.0</gitflow-maven-plugin.version>
         <problem-spring-web-starter.version>0.27.0</problem-spring-web-starter.version>
         <tidy-maven-plugin.version>1.1.0</tidy-maven-plugin.version>
     </properties>
@@ -96,6 +97,23 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.amashchenko.maven.plugin</groupId>
+                <artifactId>gitflow-maven-plugin</artifactId>
+                <version>${gitflow-maven-plugin.version}</version>
+                <configuration>
+                    <gitFlowConfig>
+                        <productionBranch>production</productionBranch>
+                        <developmentBranch>development</developmentBranch>
+                        <versionTagPrefix>v</versionTagPrefix>
+                    </gitFlowConfig>
+                    <versionDigitToIncrement>1</versionDigitToIncrement>
+                    <skipFeatureVersion>true</skipFeatureVersion>
+                    <pushRemote>true</pushRemote>
+                    <gpgSignCommit>true</gpgSignCommit>
+                    <gpgSignTag>true</gpgSignTag>
                 </configuration>
             </plugin>
         </plugins>
