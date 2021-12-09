@@ -12,5 +12,5 @@ import com.metricalsky.argent.backend.ledger.entity.LedgerEntry;
 @Transactional(readOnly = true)
 public interface LedgerEntryRepository extends JpaRepository<LedgerEntry, Integer> {
 
-    List<LedgerEntry> findByOrderByEntryDateDescIdAsc();
+    List<LedgerEntry> findByOrderByEntryDateDescIdDesc();
 }
