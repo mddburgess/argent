@@ -2,6 +2,7 @@ package com.metricalsky.argent.backend.ledger.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -22,6 +23,10 @@ import com.metricalsky.argent.backend.ledger.data.LedgerEntryData;
 public class LedgerEntry extends IdentifiableEntity {
 
     @NotNull
+    @Column(name = "ledger_id")
+    private Integer ledgerId;
+
+    @NotNull
     private LocalDate entryDate;
 
     @NotNull
@@ -30,7 +35,8 @@ public class LedgerEntry extends IdentifiableEntity {
     @NotNull
     private BigDecimal amount;
 
-    public LedgerEntry(LedgerEntryData data) {
+    public LedgerEntry(Integer ledgerId, LedgerEntryData data) {
+        this.ledgerId = ledgerId;
         this.entryDate = data.entryDate();
         this.payee = StringUtils.trimToNull(data.payee());
         this.amount = data.amount();

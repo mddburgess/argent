@@ -1,6 +1,6 @@
 package com.metricalsky.argent.backend.ledger.repository;
 
-import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -12,5 +12,8 @@ import com.metricalsky.argent.backend.ledger.entity.LedgerEntry;
 @Transactional(readOnly = true)
 public interface LedgerEntryRepository extends JpaRepository<LedgerEntry, Integer> {
 
-    List<LedgerEntry> findByOrderByEntryDateDescIdDesc();
+    Optional<LedgerEntry> findByIdAndLedgerId(Integer id, Integer ledgerId);
+
+    @Transactional
+    void deleteByIdAndLedgerId(Integer id, Integer ledgerId);
 }
