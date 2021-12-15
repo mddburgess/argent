@@ -1,0 +1,9 @@
+.btn-icon {
+    display: flex !important;
+    align-items: center;
+}
+
+.dropdown-item.active .text-danger,
+.dropdown-item:active .text-danger {
+    color: #ffffff !important;
+}

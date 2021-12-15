@@ -1,6 +1,5 @@
 import Button, {ButtonProps} from "react-bootstrap/Button";
 import {Icon} from "react-bootstrap-icons";
-import "components/form/IconButton.css";
 
 type Props = ButtonProps & {
     icon: Icon

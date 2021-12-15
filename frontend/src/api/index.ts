@@ -1,18 +1,20 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react";
 import {LedgerEntry} from "types/LedgerEntry";
 import {ApplicationInfo} from "types/ApplicationInfo";
+import {Ledger} from "types/Ledger";
 
 const api = createApi({
     reducerPath: "api",
     baseQuery: fetchBaseQuery({baseUrl: "/api"}),
     tagTypes: ["application", "ledger"],
     endpoints: (builder) => ({
-        listLedger: builder.query<LedgerEntry[], void>({
-            query: () => "ledger",
-            providesTags: (result) => [
-                {type: "ledger", id: "list"},
-                ...(result?.map(({id}) => ({type: "ledger" as const, id})) ?? [])
-            ]
+        listLedgers: builder.query<Ledger[], void>({
+            query: () => "ledgers",
+            providesTags: [{type: "ledger", id: "root"}]
+        }),
+        retrieveLedger: builder.query<Ledger, number>({
+            query: (ledgerId) => `ledgers/${ledgerId}`,
+            providesTags: [{type: "ledger", id: "ledgerId"}]
         }),
         createLedgerEntry: builder.mutation<LedgerEntry, Partial<LedgerEntry>>({
             query: (ledgerEntry) => ({
