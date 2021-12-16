@@ -4,7 +4,7 @@ import {Col, Row} from "react-bootstrap";
 import {useAppDispatch, useAppSelector} from "store/hooks";
 import LedgerEntryForm from "components/ledger/LedgerEntryForm";
 import {editingActions} from "store/editing";
-import api from "api";
+import {useDeleteLedgerEntryMutation, useUpdateLedgerEntryMutation} from "api/ledgerEntries";
 
 interface Props {
     item: LedgerEntry
@@ -12,8 +12,8 @@ interface Props {
 }
 
 const LedgerEntryRow = ({item, format}: Props) => {
-    const [updateLedgerEntry] = api.useUpdateLedgerEntryMutation();
-    const [deleteLedgerEntry] = api.useDeleteLedgerEntryMutation();
+    const [updateLedgerEntry] = useUpdateLedgerEntryMutation();
+    const [deleteLedgerEntry] = useDeleteLedgerEntryMutation();
     const editing = useAppSelector(state => state.editing);
     const dispatch = useAppDispatch();
 

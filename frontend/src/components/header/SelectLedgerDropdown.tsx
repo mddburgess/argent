@@ -1,12 +1,12 @@
-import api from "api";
 import {NavDropdown} from "react-bootstrap";
 import SelectLedgerDropdownItem from "components/header/SelectLedgerDropdownItem";
 import {useAppDispatch, useAppSelector} from "store/hooks";
 import {useEffect} from "react";
 import {ledgerActions} from "store/ledger";
+import {useListLedgersQuery} from "api/ledgers";
 
 const SelectLedgerDropdown = () => {
-    const {data} = api.useListLedgersQuery();
+    const {data} = useListLedgersQuery();
     const selected = useAppSelector(state => state.ledger.selected);
     const dispatch = useAppDispatch();
 

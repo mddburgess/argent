@@ -2,12 +2,12 @@ import LedgerEntryForm from "components/ledger/LedgerEntryForm";
 import ListGroupItem from "react-bootstrap/ListGroupItem";
 import {useAppDispatch, useAppSelector} from "store/hooks";
 import {editingActions} from "store/editing";
-import api from "api";
 import {useHotkeys} from "react-hotkeys-hook";
 import {DateTime} from "luxon";
+import {useCreateLedgerEntryMutation} from "api/ledgerEntries";
 
 const AddLedgerEntryRow = () => {
-    const [createLedgerEntry] = api.useCreateLedgerEntryMutation();
+    const [createLedgerEntry] = useCreateLedgerEntryMutation();
     const editing = useAppSelector(state => state.editing);
     const dispatch = useAppDispatch();
 

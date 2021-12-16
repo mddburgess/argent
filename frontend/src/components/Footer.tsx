@@ -3,10 +3,10 @@ import Col from "react-bootstrap/Col";
 import {Badge} from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import React from "react";
-import api from "api";
+import {useGetApplicationInfoQuery} from "api/application";
 
 const Footer = () => {
-    const {data} = api.useGetApplicationInfoQuery();
+    const {data} = useGetApplicationInfoQuery();
     const github = "https://github.com/mddburgess/argent";
 
     return (

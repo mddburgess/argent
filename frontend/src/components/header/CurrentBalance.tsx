@@ -1,8 +1,8 @@
-import api from "api";
 import Navbar from "react-bootstrap/Navbar";
+import {useRetrieveLedgerQuery} from "api/ledgers";
 
 const CurrentBalance = () => {
-    const {data} = api.useRetrieveLedgerQuery(1);
+    const {data} = useRetrieveLedgerQuery(1);
     const format = Intl.NumberFormat("en-CA", {
         style: "currency",
         currency: "CAD",
