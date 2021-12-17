@@ -14,7 +14,7 @@ const SelectLedgerDropdown = () => {
         if (data && !selected) {
             dispatch(ledgerActions.setSelected(data[0].id));
         }
-    }, [data, selected]);
+    }, [data, selected, dispatch]);
 
     if (data) {
         const selectedName = data.filter(item => item.id === selected)
