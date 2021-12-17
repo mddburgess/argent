@@ -10,10 +10,11 @@ import javax.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.apache.commons.lang3.StringUtils;
 
 import com.metricalsky.argent.backend.common.entity.IdentifiableEntity;
 import com.metricalsky.argent.backend.ledger.data.LedgerEntryData;
+
+import static org.apache.commons.lang3.StringUtils.trimToNull;
 
 @Entity
 @Table(name = "ledger_entries")
@@ -38,13 +39,13 @@ public class LedgerEntry extends IdentifiableEntity {
     public LedgerEntry(Integer ledgerId, LedgerEntryData data) {
         this.ledgerId = ledgerId;
         this.entryDate = data.entryDate();
-        this.payee = StringUtils.trimToNull(data.payee());
+        this.payee = trimToNull(data.payee());
         this.amount = data.amount();
     }
 
     public void patch(LedgerEntryData other) {
         this.entryDate = other.entryDate();
-        this.payee = StringUtils.trimToNull(other.payee());
+        this.payee = trimToNull(other.payee());
         this.amount = other.amount();
     }
 }

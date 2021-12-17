@@ -7,3 +7,8 @@
 .dropdown-item:active .text-danger {
     color: #ffffff !important;
 }
+
+.dropdown-item.active .text-muted,
+.dropdown-item:active .text-muted {
+    color: #ffffff !important;
+}
