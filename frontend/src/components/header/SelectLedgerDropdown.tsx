@@ -11,10 +11,10 @@ const SelectLedgerDropdown = () => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        if (data) {
+        if (data && !selected) {
             dispatch(ledgerActions.setSelected(data[0].id));
         }
-    });
+    }, [data, selected]);
 
     if (data) {
         const selectedName = data.filter(item => item.id === selected)

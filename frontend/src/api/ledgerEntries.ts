@@ -9,7 +9,7 @@ const ledgerEntriesApi = api.injectEndpoints({
                 method: "POST",
                 body: ledgerEntry
             }),
-            invalidatesTags: [{type: "ledgers", id: 1}]
+            invalidatesTags: [{type: "ledgers"}]
         }),
         updateLedgerEntry: builder.mutation<LedgerEntry, Partial<LedgerEntry>>({
             query: (ledgerEntry) => ({
@@ -17,14 +17,14 @@ const ledgerEntriesApi = api.injectEndpoints({
                 method: "PUT",
                 body: ledgerEntry
             }),
-            invalidatesTags: [{type: "ledgers", id: 1}]
+            invalidatesTags: [{type: "ledgers"}]
         }),
         deleteLedgerEntry: builder.mutation<void, Partial<LedgerEntry>>({
             query: (ledgerEntry) => ({
                 url: `ledgers/1/entries/${ledgerEntry.id}`,
                 method: "DELETE"
             }),
-            invalidatesTags: [{type: "ledgers", id: 1}]
+            invalidatesTags: [{type: "ledgers"}]
         })
     })
 });

@@ -1,20 +1,26 @@
 import Navbar from "react-bootstrap/Navbar";
-import {useRetrieveLedgerQuery} from "api/ledgers";
+import {useListLedgersQuery} from "api/ledgers";
+import {useAppSelector} from "store/hooks";
 
 const CurrentBalance = () => {
-    const {data} = useRetrieveLedgerQuery(1);
+    const selected = useAppSelector(state => state.ledger.selected);
+    const {ledger} = useListLedgersQuery(undefined, {
+        selectFromResult: ({data}) => ({
+            ledger: data?.find((item) => item.id === selected)
+        })
+    });
     const format = Intl.NumberFormat("en-CA", {
         style: "currency",
         currency: "CAD",
         currencySign: "accounting"
     });
 
-    if (data) {
+    if (ledger) {
         return (
             <>
                 <Navbar.Text>Current Balance</Navbar.Text>
-                <Navbar.Brand className={`ms-2 me-0 ${data.balance < 0 && "text-danger"}`}>
-                    {format.format(data.balance)}
+                <Navbar.Brand className={`ms-2 me-0 ${ledger.balance < 0 && "text-danger"}`}>
+                    {format.format(ledger.balance)}
                 </Navbar.Brand>
             </>
         );

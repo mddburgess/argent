@@ -6,12 +6,8 @@ const ledgersApi = api.injectEndpoints({
         listLedgers: builder.query<Ledger[], void>({
             query: () => "ledgers",
             providesTags: [{type: "ledgers", id: "LIST"}]
-        }),
-        retrieveLedger: builder.query<Ledger, number>({
-            query: (ledgerId) => `ledgers/${ledgerId}`,
-            providesTags: (result, error, id) => [{type: "ledgers", id}]
         })
     })
 });
 
-export const {useListLedgersQuery, useRetrieveLedgerQuery} = ledgersApi;
+export const {useListLedgersQuery} = ledgersApi;
