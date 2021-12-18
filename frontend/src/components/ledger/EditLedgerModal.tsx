@@ -3,7 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import {ledgerActions} from "store/ledger";
 import {Ledger} from "types/Ledger";
-import {Field, FieldProps, Form, Formik as Formik} from "formik";
+import {Field, FieldProps, Form, Formik} from "formik";
 import {useCreateLedgerMutation} from "api/ledgers";
 import ValidatedFormControl from "components/form/ValidatedFormControl";
 import {FormGroup, FormLabel} from "react-bootstrap";

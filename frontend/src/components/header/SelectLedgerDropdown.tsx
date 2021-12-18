@@ -1,4 +1,4 @@
-import {Modal, NavDropdown} from "react-bootstrap";
+import {NavDropdown} from "react-bootstrap";
 import SelectLedgerDropdownItem from "components/header/SelectLedgerDropdownItem";
 import {useAppDispatch, useAppSelector} from "store/hooks";
 import {useEffect} from "react";
