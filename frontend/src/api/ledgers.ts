@@ -14,8 +14,20 @@ const ledgersApi = api.injectEndpoints({
                 body: ledger
             }),
             invalidatesTags: [{type: "ledgers", id: "LIST"}]
+        }),
+        updateLedger: builder.mutation<Ledger, Partial<Ledger>>({
+            query: (ledger) => ({
+                url: `ledgers/${ledger.id}`,
+                method: "PUT",
+                body: ledger
+            }),
+            invalidatesTags: [{type: "ledgers", id: "LIST"}]
         })
     })
 });
 
-export const {useListLedgersQuery, useCreateLedgerMutation} = ledgersApi;
+export const {
+    useListLedgersQuery,
+    useCreateLedgerMutation,
+    useUpdateLedgerMutation
+} = ledgersApi;
