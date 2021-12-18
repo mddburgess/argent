@@ -18,7 +18,7 @@ const SelectLedgerDropdownItem = ({item}: Props) => {
         currencySign: "accounting"
     });
 
-    const doClick = () => dispatch(ledgerActions.setSelected(item.id));
+    const doClick = () => dispatch(ledgerActions.select(item.id));
 
     return (
         <NavDropdown.Item active={item.id === selected} onClick={doClick}>
