@@ -6,12 +6,15 @@ import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.metricalsky.argent.backend.exceptions.NotFoundException;
 import com.metricalsky.argent.backend.ledger.data.LedgerData;
 import com.metricalsky.argent.backend.ledger.data.LedgerSummary;
 import com.metricalsky.argent.backend.ledger.entity.Ledger;
@@ -41,6 +44,18 @@ public class LedgerController {
     public LedgerSummary createLedger(@Valid @RequestBody LedgerSummary ledgerSummary) {
         var ledger = new Ledger(ledgerSummary);
         ledgerRepository.save(ledger);
+        return new LedgerSummary(ledger);
+    }
+
+    @PutMapping("/{id}")
+    @Transactional
+    public LedgerSummary updateLedger(
+            @PathVariable Integer id,
+            @Valid @RequestBody LedgerSummary ledgerSummary
+    ) {
+        var ledger = ledgerRepository.findById(id)
+                .orElseThrow(NotFoundException::new);
+        ledger.patch(ledgerSummary);
         return new LedgerSummary(ledger);
     }
 }

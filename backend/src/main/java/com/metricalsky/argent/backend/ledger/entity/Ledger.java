@@ -38,6 +38,10 @@ public class Ledger extends IdentifiableEntity {
         this.name = trimToNull(ledgerSummary.name());
     }
 
+    public void patch(LedgerSummary other) {
+        this.name = trimToNull(other.name());
+    }
+
     public BigDecimal getBalance() {
         return emptyIfNull(entries)
                 .stream()
