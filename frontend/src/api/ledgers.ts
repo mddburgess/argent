@@ -22,6 +22,13 @@ const ledgersApi = api.injectEndpoints({
                 body: ledger
             }),
             invalidatesTags: [{type: "ledgers", id: "LIST"}]
+        }),
+        deleteLedger: builder.mutation<Ledger, number>({
+            query: (ledgerId) => ({
+                url: `ledgers/${ledgerId}`,
+                method: "DELETE"
+            }),
+            invalidatesTags: [{type: "ledgers", id: "LIST"}]
         })
     })
 });
@@ -29,5 +36,6 @@ const ledgersApi = api.injectEndpoints({
 export const {
     useListLedgersQuery,
     useCreateLedgerMutation,
-    useUpdateLedgerMutation
+    useUpdateLedgerMutation,
+    useDeleteLedgerMutation
 } = ledgersApi;
