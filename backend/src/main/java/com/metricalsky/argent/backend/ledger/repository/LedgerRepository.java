@@ -13,6 +13,7 @@ import com.metricalsky.argent.backend.ledger.entity.Ledger;
 @Transactional(readOnly = true)
 public interface LedgerRepository extends JpaRepository<Ledger, Integer> {
 
+    @Override
     @EntityGraph(attributePaths = "entries")
-    List<Ledger> findAllByOrderByName();
+    List<Ledger> findAll();
 }

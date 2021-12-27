@@ -33,7 +33,7 @@ public class LedgerController {
 
     @GetMapping
     public List<LedgerData> listLedgers() {
-        return ledgerRepository.findAllByOrderByName()
+        return ledgerRepository.findAll()
                 .stream()
                 .map(LedgerData::new)
                 .toList();
