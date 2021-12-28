@@ -4,7 +4,7 @@ import {FormGroup, FormLabel} from "react-bootstrap";
 import ValidatedFormControl from "components/form/ValidatedFormControl";
 import Button from "react-bootstrap/Button";
 import * as yup from "yup";
-import {Ledger} from "types/Ledger";
+import Ledger from "types/Ledger";
 
 interface Props {
     title: string;

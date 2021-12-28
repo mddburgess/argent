@@ -1,4 +1,4 @@
-import {Ledger} from "types/Ledger";
+import Ledger from "types/Ledger";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import {NavDropdown} from "react-bootstrap";

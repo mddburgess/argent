@@ -1,7 +1,7 @@
 import {useAppDispatch, useAppSelector} from "store/hooks";
 import Modal from "react-bootstrap/Modal";
 import {ledgerActions} from "store/ledger";
-import {Ledger} from "types/Ledger";
+import Ledger from "types/Ledger";
 import {useCreateLedgerMutation, useListLedgersQuery, useUpdateLedgerMutation} from "api/ledgers";
 import LedgerModalForm from "components/ledger/LedgerModalForm";
 

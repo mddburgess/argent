@@ -2,7 +2,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import InputGroup from "react-bootstrap/InputGroup";
 import {useState} from "react";
-import {LedgerEntry} from "types/LedgerEntry";
+import LedgerEntry from "types/LedgerEntry";
 import {Field, FieldProps, Form, Formik} from "formik";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import {CheckCircleFill, TrashFill, XCircle} from "react-bootstrap-icons";

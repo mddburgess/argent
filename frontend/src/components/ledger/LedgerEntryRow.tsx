@@ -1,4 +1,4 @@
-import {LedgerEntry} from "types/LedgerEntry";
+import LedgerEntry from "types/LedgerEntry";
 import ListGroupItem from "react-bootstrap/ListGroupItem";
 import {Col, Row} from "react-bootstrap";
 import {useAppDispatch, useAppSelector} from "store/hooks";

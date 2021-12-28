@@ -1,5 +1,5 @@
 import api from "api/index";
-import {Ledger} from "types/Ledger";
+import Ledger from "types/Ledger";
 
 const ledgersApi = api.injectEndpoints({
     endpoints: (builder) => ({

@@ -1,8 +1,10 @@
-import {LedgerEntry} from "types/LedgerEntry";
+import LedgerEntry from "types/LedgerEntry";
 
-export interface Ledger {
+interface Ledger {
     id: number,
     name: string,
     balance: number,
     entries?: LedgerEntry[]
 }
+
+export default Ledger;
