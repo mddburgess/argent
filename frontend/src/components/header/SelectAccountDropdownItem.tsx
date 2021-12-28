@@ -1,16 +1,16 @@
-import Ledger from "types/Ledger";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import {NavDropdown} from "react-bootstrap";
 import {useAppDispatch, useAppSelector} from "store/hooks";
-import {ledgerActions} from "store/ledger";
+import Account from "types/Account";
+import {accountActions} from "store/account";
 
 interface Props {
-    item: Ledger
+    item: Account
 }
 
-const SelectLedgerDropdownItem = ({item}: Props) => {
-    const selected = useAppSelector(state => state.ledger.selected);
+const SelectAccountDropdownItem = ({item}: Props) => {
+    const selected = useAppSelector(state => state.account.selected);
     const dispatch = useAppDispatch();
     const format = Intl.NumberFormat("en-CA", {
         style: "currency",
@@ -18,7 +18,7 @@ const SelectLedgerDropdownItem = ({item}: Props) => {
         currencySign: "accounting"
     });
 
-    const doClick = () => dispatch(ledgerActions.select(item.id));
+    const doClick = () => dispatch(accountActions.select(item.id));
 
     return (
         <NavDropdown.Item active={item.id === selected} onClick={doClick}>
@@ -36,4 +36,4 @@ const SelectLedgerDropdownItem = ({item}: Props) => {
     );
 }
 
-export default SelectLedgerDropdownItem;
+export default SelectAccountDropdownItem;

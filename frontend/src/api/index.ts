@@ -5,6 +5,7 @@ const api = createApi({
     baseQuery: fetchBaseQuery({baseUrl: "/api"}),
     tagTypes: [
         "application",
+        "accounts",
         "ledgers"
     ],
     endpoints: () => ({})
